@@ -1,0 +1,21 @@
+version: "3"
+
+networks:
+  forgejo:
+
+volumes:
+  forgejo:
+
+services:
+  forgejo:
+    image: codeberg.org/forgejo/forgejo:7.0.5-rootless
+    restart: always
+    ports:
+      - "3000:3000"
+      - "3022:22"
+    networks:
+      - forgejo
+    volumes:
+      - forgejo:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
